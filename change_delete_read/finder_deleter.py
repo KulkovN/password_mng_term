@@ -28,8 +28,12 @@ def runner_to_find(flag):
     with open(PATH_TO_FILE, 'r') as file:
         data = json.load(file)
         for _dict in data['Loggins & passwords']:
-            if _dict['service'] == name_service \
-                and flag in ['find', 'найти']:
-                        print(_dict)
-            else:
-                deleter(data, name_service)
+            if _dict['service'] == name_service:
+                if flag in ['find', 'найти']:
+                    print(_dict)
+                    break
+                else:
+                    deleter(data, name_service)
+
+if __name__ == "__main__":
+    runner_to_find('find')

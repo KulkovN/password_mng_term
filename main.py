@@ -11,7 +11,7 @@ def main():
     prewiew_text = Figlet(font='slant')
     print(prewiew_text.renderText('PyPassMng'))
     condition = input('Что вы хотите сделать\nнайти, изменить, \
-удалит (можно на анг.яз.): ')
+удалит, создать (можно на анг.яз.): ')
     cond = [
             'найти', 
             'find', 

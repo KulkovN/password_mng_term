@@ -18,7 +18,6 @@ def checExist():
         with open(PATH_TO_FILE, 'w'):
             print(f'\nФайл для записи отсутствует. Создан \
 файл для записи по пути:\n{PATH_TO_FILE}')
-    return PATH_TO_FILE
 
 
 def new_inputer_datas():

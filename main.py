@@ -4,34 +4,43 @@ from change_delete_read.finder_deleter import *
 from read_write.for_write import *
 
 
-def main():
+def main(counter_attempts_to_run):
     """
     Превью и запуск по запись условий работы
     """
+    
     prewiew_text = Figlet(font='slant')
-    print(prewiew_text.renderText('PyPassMng'))
-    condition = input('Что вы хотите сделать\nнайти, изменить, \
+    if counter_attempts_to_run <= 3:
+        print(prewiew_text.renderText('PyPassMng'))
+        print(f'\n\nУ вас есть 3 попытки для ввода действия. Сейчас {counter_attempts_to_run}')
+        condition = input('\nЧто вы хотите сделать\nнайти, изменить, \
 удалит, создать (можно на анг.яз.): ')
-    cond = [
-            'найти', 
-            'find', 
-            'изменить', 
-            'change', 
-            'удалить', 
-            'delete',
-            'создать',
-            'create']
-    if condition.lower() in cond[0:2]:
-        runner_to_find(condition.lower())
-    elif condition.lower() in cond[2:4]:
-        changer_js(PATH_TO_FILE, ex_params())
-    elif condition.lower() in cond[4:6]:
-        runner_to_find(condition.lower())
-    elif condition.lower() in cond[6:]:
-        write_new_pass(checExist(),\
-            createn_data_struct(new_inputer_datas()))
+        cond = [
+                'найти', 
+                'find', 
+                'изменить', 
+                'change', 
+                'удалить', 
+                'delete',
+                'создать',
+                'create']
+        if condition.lower() in cond[0:2]:
+            runner_to_find(condition.lower())
+        elif condition.lower() in cond[2:4]:
+            changer_js(PATH_TO_FILE, ex_params())
+        elif condition.lower() in cond[4:6]:
+            runner_to_find(condition.lower())
+        elif condition.lower() in cond[6:]:
+            write_new_pass(checExist(),\
+                createn_data_struct(new_inputer_datas()))
+        else:
+            counter_attempts_to_run += 1
+            main(counter_attempts_to_run)
     else:
-        main()
+        print('\nПопытки исчерпаны. \
+Попробуйте перезапустить приложение и ввести требуемое действие ')
+        print(prewiew_text.renderText('Good bye'))
 
 if __name__ == "__main__":
-    main()
+    counter_attempts_to_run = 1
+    main(counter_attempts_to_run)

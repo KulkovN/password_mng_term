@@ -17,6 +17,22 @@ def deleter(data, name_service):
         print(ex)
 
 
+def data_printer(_data):
+    """Вывод значений словаря с данными, 
+    когда пользвоатель просто ищет нужный пароль
+
+    Args:
+        _data (dict): словарь данных, который был 
+        найден по совпадению значения сервиса внутри файла
+    """
+    print('\nВаши данные по запросу:\n')
+    lst = ['Сервис: ', 'Логин: ', 'Пароль: ']
+    counter = 0
+    for i in _data.values():
+        print(f'{lst[counter]}{i}')
+        counter += 1
+
+
 def runner_to_find(flag):
     """Для поиска нужного словаря в файле
 
@@ -30,8 +46,8 @@ def runner_to_find(flag):
         for _dict in data['Loggins & passwords']:
             if _dict['service'] == name_service:
                 if flag in ['find', 'найти']:
-                    print(_dict)
-                    break
+                    # print(_dict)
+                     data_printer(_dict)
                 else:
                     deleter(data, name_service)
 

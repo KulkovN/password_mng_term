@@ -18,6 +18,7 @@ def checExist():
         with open(PATH_TO_FILE, 'w'):
             print(f'\nФайл для записи отсутствует. Создан \
 файл для записи по пути:\n{PATH_TO_FILE}')
+    return PATH_TO_FILE
 
 
 def new_inputer_datas():
@@ -35,8 +36,10 @@ def new_inputer_datas():
 def createn_data_struct(lst_data):
     """Создает словарь данных под запись
     Args:
-        args (list): список введенных значений под 
+        lst_data (list): список введенных значений под 
         запись
+    Returns:
+        data (dict): словарь с введенными данными
     """
     data = { 
     'service' : '',

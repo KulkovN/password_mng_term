@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from pyfiglet import Figlet
 from change_delete_read.changer import *
 from change_delete_read.finder_deleter import *
@@ -7,16 +8,18 @@ from read_write.for_write import *
 def main(counter_attempts_to_run):
     """
     Превью и запуск по запись условий работы
+
+    Args:
+        type (int) : counter_attempts_to_run: счетчик попыток запуска
+
     """
-    
     prewiew_text = Figlet(font='slant')
     if counter_attempts_to_run <= 3:
         print(prewiew_text.renderText('PyPassMng'))
         print(f'\n\nУ вас есть 3 попытки для ввода действия. Сейчас {counter_attempts_to_run}')
         condition = input('\nЧто вы хотите сделать\nнайти, изменить, \
 удалит, создать (можно на анг.яз.): ')
-        cond = [
-                'найти', 
+        cond = ['найти', 
                 'find', 
                 'изменить', 
                 'change', 

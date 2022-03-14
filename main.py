@@ -32,6 +32,7 @@ def main(counter_attempts_to_run):
             show_all()
             runner_to_find(condition.lower())
         elif condition.lower() in cond[2:4]:
+            show_all()
             changer_js(PATH_TO_FILE, ex_params())
         elif condition.lower() in cond[4:6]:
             runner_to_find(condition.lower())

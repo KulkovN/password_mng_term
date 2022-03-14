@@ -1,9 +1,9 @@
 import os
+import sys
+sys.path.append(os.path.join(os.getcwd(), ''))
 import json
-from pathlib import *
+from const import PATH_TO_FILE
 
-# путь файла
-PATH_TO_FILE = f'{Path.home()}/Desktop/.allpwd.json'
 
 def checExist():
     """

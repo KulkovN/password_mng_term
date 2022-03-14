@@ -1,10 +1,18 @@
 import json
-from pathlib import Path
-# from changer import json, Path, PATH_TO_FILE
-
-PATH_TO_FILE = f'{Path.home()}/Desktop/.allpwd.json'
+import os
+from pickle import DICT
+import sys
+sys.path.append(os.path.join(os.getcwd(), ''))
+from const import PATH_TO_FILE # дирректория для записи файла
+from all_keys_srvices.show_all_serv import show_all, checkin
 
 def deleter(data, name_service):
+    """удалит выбранный сервис
+
+    :param _dict_ data: словарь из json
+    :param _str_ name_service: пользовательский ввод -
+    этот сервис будет удален
+    """
     try:
         for _dict in data['Loggins & passwords']:
             if _dict['service'] == name_service:
@@ -20,7 +28,7 @@ def deleter(data, name_service):
 
 def data_printer(_data):
     """Вывод значений словаря с данными, 
-    когда пользвоатель просто ищет нужный пароль
+    когда пользватель просто ищет нужный пароль
 
     Args:
         _data (dict): словарь данных, который был 
@@ -41,17 +49,20 @@ def runner_to_find(flag):
         flag (str): если поиск - то просто распечатает
             если удаление - передаст в deleter для удаление
     """
-#     name_service = input('Напишите имя сервиса (или напишите \
-# "все / all, для вывода всего списка"): ')
-    name_service = input('\nНапишите имя сервиса: ')
+    counter = 1
     with open(PATH_TO_FILE, 'r') as file:
         data = json.load(file)
+        show_all(data)
+        name_service = input('\nНапишите имя сервиса: ')
+        if not checkin(name_service, data):
+            print('Выбранный сервис не записан. Попробуйте еще раз...')
+            runner_to_find(flag='find')
         for _dict in data['Loggins & passwords']:
-            if _dict['service'] == name_service:
+            print(f"{counter}) {_dict['service']}")
+            if name_service == _dict['service']:
                 if flag in ['find', 'найти']:
                      data_printer(_dict)
-                # elif flag in ['все', 'всё', 'all']:
-                #     data_printer()
+                     break
                 else:
                     deleter(data, name_service)
 

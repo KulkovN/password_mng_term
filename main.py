@@ -3,6 +3,7 @@ from pyfiglet import Figlet
 from change_delete_read.changer import *
 from change_delete_read.finder_deleter import *
 from read_write.for_write import *
+from all_keys_srvices.show_all_serv import show_all
 
 
 def main(counter_attempts_to_run):
@@ -28,6 +29,7 @@ def main(counter_attempts_to_run):
                 'создать',
                 'create']
         if condition.lower() in cond[0:2]:
+            show_all()
             runner_to_find(condition.lower())
         elif condition.lower() in cond[2:4]:
             changer_js(PATH_TO_FILE, ex_params())

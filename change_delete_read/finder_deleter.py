@@ -43,7 +43,7 @@ def runner_to_find(flag):
     """
 #     name_service = input('Напишите имя сервиса (или напишите \
 # "все / all, для вывода всего списка"): ')
-    name_service = input('Напишите имя сервиса: ')
+    name_service = input('\nНапишите имя сервиса: ')
     with open(PATH_TO_FILE, 'r') as file:
         data = json.load(file)
         for _dict in data['Loggins & passwords']:

@@ -49,7 +49,6 @@ def runner_to_find(flag):
         flag (str): если поиск - то просто распечатает
             если удаление - передаст в deleter для удаление
     """
-    counter = 1
     with open(PATH_TO_FILE, 'r') as file:
         data = json.load(file)
         show_all(data)
@@ -58,7 +57,6 @@ def runner_to_find(flag):
             print('Выбранный сервис не записан. Попробуйте еще раз...')
             runner_to_find(flag='find')
         for _dict in data['Loggins & passwords']:
-            print(f"{counter}) {_dict['service']}")
             if name_service == _dict['service']:
                 if flag in ['find', 'найти']:
                      data_printer(_dict)

@@ -18,14 +18,14 @@ def main(counter_attempts_to_run:int) -> None:
             runner_to_find(condition.lower())
         elif condition.lower() in TASKS[2:4]:
 
-            changer_js(PATH)
+            changer_js('/Users/kulkovni/Desktop/.allpwd.json')
         elif condition.lower() in TASKS[4:6]:
             runner_to_find(condition.lower())
         elif condition.lower() in TASKS[6:]:
             uid = {i:input(f'Введите ваш {i}') for i in \
                 dict(service='', login='', password='')} # user input data (uid)
 
-            write_new_pass(PATH_TO_FILE, uid)
+            write_new_pass('/Users/kulkovni/Desktop/.allpwd.json', uid)
         elif condition.lower() in TASKS_EXIT:
             print(PREWIEW.renderText(MES_S['bye']))
             sys.exit(1)

@@ -1,12 +1,11 @@
 import json
 import os
-from pickle import DICT
 import sys
 sys.path.append(os.path.join(os.getcwd(), ''))
-from const import PATH_TO_FILE # дирректория для записи файла
+from config.cr_pathes import PATH_TO_FILE # дирректория для записи файла
 from all_keys_srvices.show_all_serv import show_all, checkin
 
-def deleter(data, name_service):
+def deleter(data:dict, name_service:str) -> None:
     """удалит выбранный сервис
 
     :param _dict_ data: словарь из json
@@ -26,7 +25,7 @@ def deleter(data, name_service):
         print(ex)
 
 
-def data_printer(_data):
+def data_printer(_data:dict) -> None:
     """Вывод значений словаря с данными, 
     когда пользватель просто ищет нужный пароль
 
@@ -42,7 +41,7 @@ def data_printer(_data):
         counter += 1
 
 
-def runner_to_find(flag):
+def runner_to_find(flag:str) -> None:
     """Для поиска нужного словаря в файле
 
     Args:

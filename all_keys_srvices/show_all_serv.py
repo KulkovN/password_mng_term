@@ -1,11 +1,4 @@
-import os
-import sys
-sys.path.append(os.path.join(os.getcwd(), ''))
-import json
-from const import PATH_TO_FILE # константа пути для файла
-
-
-def show_all(data):
+def show_all(data:dict) -> None:
     """
     Дает вывод всех значений ключа 'service'
     для более удобной навигации во время выборки 
@@ -18,16 +11,12 @@ def show_all(data):
         counter+=1
     
 
-def checkin(us_inp, data):
+def checkin(us_inp:str, data:dict) -> bool:
     """
     Проверка ввода и сопостовление по ключу
-    проверяет наличие сервисов по ключу
-    т.е. сравнивает ввод пользователя и сохраненные значения
-    ключей внутри словара файла
-
-    :param _str_ us_inp: пользовательский ввод (когда вводит сервис)
-    :param _dict_ data: словарь корневого файла, где лежат все пассы
-    :return _bool_: в зависимости от результата проверки 
+    :param us_inp: пользовательский ввод (когда вводит сервис)
+    :param data: словарь корневого файла, где лежат все пассы
+    :return bool в зависимости от результата проверки 
     """
     return True if us_inp in (i["service"] for i \
         in data["Loggins & passwords"]) else False

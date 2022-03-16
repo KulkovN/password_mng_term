@@ -2,12 +2,11 @@ import json
 import os
 import sys
 sys.path.append(os.path.join(os.getcwd(), ''))
-from config.cr_pathes import PATH_TO_FILE # дирректория для записи файла
 from all_keys_srvices.show_all_serv import show_all, checkin
 
-def deleter(data:dict, name_service:str) -> None:
+def deleter(path:str, data:dict, name_service:str) -> None:
     """удалит выбранный сервис
-
+    :param path : путь до файла json
     :param _dict_ data: словарь из json
     :param _str_ name_service: пользовательский ввод -
     этот сервис будет удален
@@ -17,7 +16,7 @@ def deleter(data:dict, name_service:str) -> None:
             if _dict['service'] == name_service:
                 data['Loggins & passwords'].remove(_dict)
                 #   запись в файл
-                with open (PATH_TO_FILE, 'w') as file:
+                with open (path, 'w') as file:
                     json.dump(data, file, \
                         ensure_ascii=False, indent=4)
                     print(f'{name_service} - удален')
@@ -41,14 +40,14 @@ def data_printer(_data:dict) -> None:
         counter += 1
 
 
-def runner_to_find(flag:str) -> None:
+def runner_to_find(path:str, flag:str) -> None:
     """Для поиска нужного словаря в файле
 
     Args:
         flag (str): если поиск - то просто распечатает
             если удаление - передаст в deleter для удаление
     """
-    with open(PATH_TO_FILE, 'r') as file:
+    with open(path, 'r') as file:
         data = json.load(file)
         show_all(data)
         name_service = input('\nНапишите имя сервиса: ')
@@ -61,7 +60,7 @@ def runner_to_find(flag:str) -> None:
                      data_printer(_dict)
                      break
                 else:
-                    deleter(data, name_service)
+                    deleter(path, data, name_service)
 
 if __name__ == "__main__":
     runner_to_find('find')

@@ -1,7 +1,7 @@
 import os
 import sys
+import json
 sys.path.append(os.path.join(os.getcwd(), ''))
-from main import json
 from config.texts import VARABLES
 from all_keys_srvices.show_all_serv import checkin, show_all
 

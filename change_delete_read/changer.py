@@ -1,16 +1,15 @@
 import os
 import sys
-from all_keys_srvices.show_all_serv import checkin, show_all
 sys.path.append(os.path.join(os.getcwd(), ''))
-import json
-from const import PATH_TO_FILE
-  
+from main import json
+from config.texts import VARABLES
+from all_keys_srvices.show_all_serv import checkin, show_all
 
-def changer_js(path):
-    """парсит и вносит изменения +
-         запишет новые данные в файл
-    Args:
-        path (str): путь до файла
+def changer_js(path:str) -> None:
+    """
+    Парсит и вносит изменения +
+    запишет новые данные в файл
+    :param path - путь до файла
     """
     with open(path, 'r') as jsf:
         data = json.load(jsf)
@@ -18,13 +17,13 @@ def changer_js(path):
     service = input('введите сервис, данные которого\
  нужно заменить: ')
     if not checkin(service, data):
-        print('Выбранный сервис не записан. Попробуйте еще раз...')
+        print('Выбранный отсутствует. Попробуйте еще раз...')
         changer_js(path)
     key = input('Введите что вы хотите заменить(service / login / password): ')
-    if key not in ['service', 'login', 'password']:
+    if key not in VARABLES:
         key = input(f'Вы ввели {key}! Если уверены, что хотите \
 добавить новый "ключ", повторите ввод. \
-В противном случае - введите верное значение ключа')
+В противном случае - введите корректное значение ключа')
     value = input('Введите значение для замены: ')
     for i in data['Loggins & passwords']:
         if i['service'] == service:

@@ -3,33 +3,35 @@ import json
 from pathlib import Path
 
 
-def confy(path):
-    """
-    Создание конфига с путем для сохранения
-    :param path: путь для сохранения json-файла
-    """
-    # path=f'{Path.home()}/Desktop/test.json'
+def confy() -> None:
+    """ Создание конфига с путем для сохранения """
     config = configparser.ConfigParser()
-    path_for_cnfg = Path.cwd().parent
-    if not Path(path_for_cnfg).exists:
-        config.add_section('SavePath')\
-            .set('SavePath', 'Path', path)
-        # запись конфига
-        with open(f'{path_for_cnfg}/config.ini', 'w') as file:
-            config.write(file)
-        # создание json
-        with open(f'{path}/.allupwd.json', 'w') as jfile:
-            json.dump({'Loggins & passwords':[]}, jfile)
-        print(f'Новый файл создан по пути {path}')
-    else:
-        config.read(path_for_cnfg)
-        pts = config.get('SavePath', 'Path')
-        print(pts)
+    path_for_cnfg = f'{Path.cwd()}/pathes.ini'
+    try:
+        if not Path(path_for_cnfg).exists():
+            path = input('Введите путь для записи файла с данными: ')
+            path = f'{path}/test.json'
+            config.add_section('SavePath')
+            config.set('SavePath', 'Path', path)
+            # запись конфига
+            with open(path_for_cnfg, 'w') as file:
+                config.write(file)
+            # создание json
+            with open(path, 'w') as jf:
+                json.dump({'Loggins & passwords':[]}, jf)
+            print(f'Новый файл создан по пути {path}')
+        else:
+            config.read(path_for_cnfg)
+            PTS = config.get('SavePath', 'Path')
+            return str(PTS)
+    except FileNotFoundError:
+        confy(input(f'Напишите корректный путь (полный): '))
+    except Exception as ex:
+        print(ex)
 
 
 if __name__ == "__main__":
-    path = input('Введите путь где будут хранится данные: ')
-    confy(path)
+    confy()
 
 # str(Path.cwd().parent)
 

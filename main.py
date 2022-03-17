@@ -9,7 +9,7 @@ from config.texts import HI, BYE, PREWIEW, TASKS, TASKS_EXIT, MES_S
 
 def main(counter_attempts_to_run:int) -> None:
     """
-    Превью и запуск по запись условий работы
+    Превью и запуск работы
     :param counter_attempts_to_run: счетчик попыток запуска
     """
     PTS = confy()

@@ -14,7 +14,7 @@ def main(counter_attempts_to_run:int) -> None:
     """
     PTS = confy()
     if PTS:
-        if counter_attempts_to_run <= 3:
+        if counter_attempts_to_run >= 1:
             print(f"{HI}\n{MES_S['attempts']}")
             condition = input(MES_S['what_u_do'])
             if condition.lower() in TASKS[0:2]:
@@ -31,14 +31,15 @@ def main(counter_attempts_to_run:int) -> None:
                 print(BYE)
                 sys.exit(1)
             else:
-                counter_attempts_to_run += 1
+                counter_attempts_to_run -= 1
+                print(f'Осталось ({counter_attempts_to_run}) попыток')
                 main(counter_attempts_to_run)
         else:
             print(f"{MES_S['zero_att']}\n{BYE}")
     else:
-        print('Exception')
+        print('Exception - PTS is False !!!')
 
 
 if __name__ == "__main__":
-    counter_attempts_to_run = 1
+    counter_attempts_to_run = 3
     main(counter_attempts_to_run)

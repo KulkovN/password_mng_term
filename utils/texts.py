@@ -1,7 +1,7 @@
 from pyfiglet import Figlet
 
 PREWIEW = Figlet(font='slant')
-HI = PREWIEW.renderText('PyPassMng')
+HI = PREWIEW.renderText('PassMng')
 BYE = PREWIEW.renderText('bye bye')
 
 TASKS = ['найти', 'find', 'изменить', 'change', 'удалить', 'delete','создать','create']

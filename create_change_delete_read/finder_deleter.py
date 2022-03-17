@@ -1,8 +1,10 @@
 import json
 import os
 import sys
+from prettytable import PrettyTable
 sys.path.append(os.path.join(os.getcwd(), ''))
 from all_keys_srvices.show_all_serv import show_all, checkin
+
 
 def deleter(path:str, data:dict, name_service:str) -> None:
     """удалит выбранный сервис
@@ -32,12 +34,10 @@ def data_printer(_data:dict) -> None:
         _data (dict): словарь данных, который был 
         найден по совпадению значения сервиса внутри файла
     """
-    print('\nВаши данные по запросу:\n')
-    lst = ['Сервис: ', 'Логин: ', 'Пароль: ']
-    counter = 0
-    for i in _data.values():
-        print(f'{lst[counter]}{i}')
-        counter += 1
+    table = PrettyTable()
+    table.field_names = ["Сервис", "Логин", "Пароль"]
+    table.add_row([i for i in _data.values()])
+    print(table)
 
 
 def runner_to_find(path:str, flag:str) -> None:
@@ -50,7 +50,7 @@ def runner_to_find(path:str, flag:str) -> None:
     with open(path, 'r') as file:
         data = json.load(file)
         show_all(data)
-        name_service = input('\nНапишите имя сервиса: ')
+        name_service = input('\nВведите имя сервиса из таблицы выше: ')
         if not checkin(name_service, data):
             print('Выбранный сервис не записан. Попробуйте еще раз...')
             runner_to_find(flag='find')
@@ -62,5 +62,7 @@ def runner_to_find(path:str, flag:str) -> None:
                 else:
                     deleter(path, data, name_service)
 
-if __name__ == "__main__":
-    runner_to_find('find')
+# if __name__ == "__main__":
+#     # runner_to_find('find')
+#     a = dict(own='service', two='login', three='password')
+#     data_printer(a)

@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 import sys
-from config.cr_pathes import confy
-from change_delete_read.changer import changer_js
-from change_delete_read.finder_deleter import runner_to_find
-from read_write.for_write import write_new_pass
-from config.texts import HI, BYE, PREWIEW, TASKS, TASKS_EXIT, MES_S
+from utils.cr_pathes import confy
+from create_change_delete_read.changer import changer_js
+from create_change_delete_read.finder_deleter import runner_to_find
+from create_change_delete_read.creater import write_new_pass
+from utils.texts import HI, BYE, TASKS, TASKS_EXIT, MES_S
 
 
 def main(counter_attempts_to_run:int) -> None:
     """
-    Превью и запуск работы
+    запуск работы
     :param counter_attempts_to_run: счетчик попыток запуска
     """
     PTS = confy()
@@ -28,7 +28,7 @@ def main(counter_attempts_to_run:int) -> None:
                     dict(service='', login='', password='')} # user input data (uid)
                 write_new_pass(PTS, uid)
             elif condition.lower() in TASKS_EXIT:
-                print(PREWIEW.renderText(MES_S['bye']))
+                print(BYE)
                 sys.exit(1)
             else:
                 counter_attempts_to_run += 1

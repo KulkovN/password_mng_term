@@ -2,7 +2,7 @@ import os
 import sys
 import json
 sys.path.append(os.path.join(os.getcwd(), ''))
-from config.texts import VARABLES
+from utils.texts import VARABLES
 from all_keys_srvices.show_all_serv import checkin, show_all
 
 def changer_js(path:str) -> None:

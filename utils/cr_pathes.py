@@ -8,7 +8,7 @@ def confy() -> None:
     Создание конфига с путем для сохранения
     """
     config = configparser.ConfigParser()
-    path_for_cnfg = Path(f'{Path.home()}/py_pass_conf/pathes')
+    path_for_cnfg = Path(f'{Path.home()}/.py_pass_conf/pathes')
     path_to_confrFile = f'{path_for_cnfg}/pathes.ini'
     try:
         if not Path(path_for_cnfg).exists():

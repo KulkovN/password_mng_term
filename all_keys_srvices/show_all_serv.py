@@ -26,17 +26,3 @@ def checkin(us_inp:str, data:dict) -> bool:
     """
     return True if us_inp in (i["service"] for i \
         in data["Loggins & passwords"]) else False
-
-
-if __name__ == "__main__":
-    d = {"Loggins & passwords": 
-            [
-                {"service": "google",
-                "login": "kulkovnik93@gmail.com",
-                "password": "3571827_Nike"}, 
-                {"service": "google",
-                "login": "kulkovnik93@gmail.com",
-                "password": "3571827_Nike"}
-            ]
-        }
-    show_all(d)

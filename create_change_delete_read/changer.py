@@ -1,8 +1,10 @@
 import os
 import sys
 import json
+import readline
 sys.path.append(os.path.join(os.getcwd(), ''))
 from utils.texts import VARABLES
+from utils.compliter import MyCompleter
 from all_keys_srvices.show_all_serv import checkin, show_all
 
 
@@ -19,6 +21,10 @@ def changer_js(path:str) -> None:
     with open(path, 'r') as jsf:
         data = json.load(jsf)
     show_all(data)
+    # compliter тут
+    completer = MyCompleter([i['service'] for i in data['Loggins & passwords']])
+    readline.set_completer(completer.complete)
+    readline.parse_and_bind('tab: complete')
     service = input('введите сервис, данные которого\
  нужно заменить: ')
     if not checkin(service, data):

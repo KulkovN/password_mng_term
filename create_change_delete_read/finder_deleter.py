@@ -1,9 +1,11 @@
 import json
 import os
 import sys
+import readline
 from prettytable import PrettyTable
 sys.path.append(os.path.join(os.getcwd(), ''))
 from all_keys_srvices.show_all_serv import show_all, checkin
+from utils.compliter import MyCompleter
 
 
 def deleter(path:str, data:dict, name_service:str) -> None:
@@ -50,7 +52,12 @@ def runner_to_find(path:str, flag:str) -> None:
     with open(path, 'r') as file:
         data = json.load(file)
         show_all(data)
+        # compliter тут
+        completer = MyCompleter([i['service'] for i in data['Loggins & passwords']])
+        readline.set_completer(completer.complete)
+        readline.parse_and_bind('tab: complete')
         name_service = input('\nВведите имя сервиса из таблицы выше: ')
+
         if not checkin(name_service, data):
             print('Выбранный сервис не записан. Попробуйте еще раз...')
             runner_to_find(flag='find')
@@ -62,7 +69,6 @@ def runner_to_find(path:str, flag:str) -> None:
                 else:
                     deleter(path, data, name_service)
 
-# if __name__ == "__main__":
-#     # runner_to_find('find')
-#     a = dict(own='service', two='login', three='password')
-#     data_printer(a)
+if __name__ == "__main__":
+    pass
+    runner_to_find('/Users/kulkovni/Desktop/.allpwd.json', 'find')

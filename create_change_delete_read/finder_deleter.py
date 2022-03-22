@@ -21,7 +21,7 @@ def deleter(data:dict, name_service:str, path:str) -> None:
         for _dict in data['Loggins & passwords']:
             if _dict['service'] == name_service:
                 data['Loggins & passwords'].remove(_dict)
-                #   запись в файл
+                #   запись в файл
                 with open (path, 'w') as file:
                     json.dump(data, file, \
                         ensure_ascii=False, indent=4)
@@ -33,7 +33,6 @@ def deleter(data:dict, name_service:str, path:str) -> None:
 def data_printer(_data:dict) -> None:
     """Вывод значений словаря с данными, 
     когда пользватель просто ищет нужный пароль
-
     Args:
         _data (dict): словарь данных, который был 
         найден по совпадению значения сервиса внутри файла
@@ -46,7 +45,6 @@ def data_printer(_data:dict) -> None:
 
 def runner_to_find(path:str, flag:str) -> float:
     """Для поиска нужного словаря в файле
-
     Args:
         flag (str): если поиск - то просто распечатает
             если удаление - передаст в deleter для удаление
@@ -93,4 +91,3 @@ def triger_flags(*args) -> None:
 if __name__ == "__main__":
     pass
     print(type(runner_to_find('/Users/kulkovni/Desktop/.allpwd.json', 'find')))
-

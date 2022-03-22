@@ -36,3 +36,4 @@ def main(counter_attempts_to_run:int) -> None:
 if __name__ == "__main__":
     counter_attempts_to_run = 3
     main(counter_attempts_to_run)
+    

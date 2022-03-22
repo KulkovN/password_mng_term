@@ -19,13 +19,7 @@ def main(counter_attempts_to_run:int) -> None:
             if condition.lower() in TASKS[:6]:
                 runner_to_find(PTS, condition.lower())
             elif condition.lower() in TASKS[6:]:
-
-
-                uid = {i:input(f'Введите ваш {i}: ') for i in \
-                    dict(service='', login='', password='')} # user input data (uid)
-                write_new_pass(PTS, uid)
-
-                
+                write_new_pass(PTS)
             elif condition.lower() in TASKS_EXIT:
                 print(BYE)
                 sys.exit(1)

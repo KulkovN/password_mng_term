@@ -17,6 +17,7 @@ def crypt(file, paswd, flag):
         pyAesCrypt.decryptFile(file,
             os.path.splitext(file)[0],
             paswd, buffer)
+        os.remove(file)
         print('Разшифр')
 
 

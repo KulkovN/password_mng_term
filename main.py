@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-from cmd import PROMPT
-import sys
 import stdiomask
 from pathlib import Path, PurePosixPath
 from utils.cr_pathes import configur
@@ -42,7 +40,7 @@ def main(counter:int) -> None:
         else:
             print('Не верный пароль...')
             break
-        
+
 
 if __name__ == "__main__":
     counter_attempts_to_run = 3

@@ -11,6 +11,7 @@ pyasn1==0.4.8
 pycparser==2.21
 pyfiglet==0.8.post1
 pylint==2.12.2
+stdiomask==0.0.6
 toml==0.10.2
 typing_extensions==4.1.1
 wcwidth==0.2.5

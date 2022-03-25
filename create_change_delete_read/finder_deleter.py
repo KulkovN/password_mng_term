@@ -3,9 +3,8 @@ import os
 import sys
 import readline
 from prettytable import PrettyTable
-
-from create_change_delete_read.changer import write_change
 sys.path.append(os.path.join(os.getcwd(), ''))
+from create_change_delete_read.changer import write_change
 from all_keys_srvices.show_all_serv import show_all, checkin
 from utils.compliter import MyCompleter
 
@@ -57,14 +56,11 @@ def runner_to_find(path:str, flag:str) -> float:
         readline.set_completer(completer.complete)
         readline.parse_and_bind('tab: complete')
         name_service = input('\nВведите искомый сервис для ваших целей: ')
-        if not checkin(name_service, data):
-            print('Выбранный сервис не записан. Попробуйте еще раз...')
-            # runner_to_find(flag='find')
-            runner_to_find(flag)
-        else:
-            triger_flags(data, name_service, flag, path)
-
-
+        while not checkin(name_service, data):
+            name_service = input('Выбранный сервис не записан. Попробуйте еще раз...')
+        triger_flags(data, name_service, flag, path)
+        
+       
 def triger_flags(*args) -> None:
     """
     Функция филтрации флага, после ввода сервиса
@@ -88,6 +84,6 @@ def triger_flags(*args) -> None:
                 deleter(args[0], args[1], args[3])
                 break
 
-if __name__ == "__main__":
-    pass
-    print(type(runner_to_find('/Users/kulkovni/Desktop/.allpwd.json', 'find')))
+
+if __name__ == '__main__':
+    runner_to_find('/Users/kulkovni/Desktop/.allpwd.json', 'find')

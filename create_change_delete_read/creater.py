@@ -41,7 +41,3 @@ def write_new_pass(save_path:str) -> None: #, data:dict) -> None:
         js_data['Loggins & passwords'].append(uid)
         with open(save_path, 'w', encoding='utf-8') as f:
             json.dump(js_data, f, ensure_ascii=False, indent=3)
-
-
-# if __name__ == "__main__":
-#     write_new_pass('/Users/kulkovni/Desktop/.allpwd.json')

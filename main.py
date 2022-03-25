@@ -11,14 +11,14 @@ from utils.texts import HI, BYE, TASKS, TASKS_EXIT, MES_S
 def main(counter:int) -> None:
     """
     запуск работы
-    :param counter_attempts_to_run: счетчик попыток запуска
+    :param counter: счетчик попыток запуска
     """
     PTS = configur() # return type is `float`
     path_to_json = PTS[0].split(PurePosixPath(PTS[0]).suffix)[0]
     while True:
         if counter > 0:
             paswd = stdiomask.getpass(prompt=f'{HI}\n\nУ вас есть \
-{counter} попытки для ввода режима.Введите мастер-пароль: ')
+{counter} попытки для ввода мастер пароля и режима\nВведите мастер-пароль: ')
             if paswd == PTS[1]:
                 if Path(PTS[0]).exists():
                     crypt(PTS[0], paswd, ' ')
@@ -30,7 +30,6 @@ def main(counter:int) -> None:
                 elif condition.lower() in TASKS_EXIT:
                     counter = 0
                     print(BYE)
-                    crypt(path_to_json, paswd, 'crypt')
                 crypt(path_to_json, paswd, 'crypt')
                 break
             elif paswd != PTS[1] and counter >= 1:

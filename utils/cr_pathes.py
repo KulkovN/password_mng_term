@@ -1,26 +1,26 @@
-import configparser 
 import json
+import configparser
 from pathlib import Path, PurePosixPath
-from crypt import crypt
-
+from utils._crypt import _hash
 
 def configur() -> float:
     """ 
     Создание конфига с путем для сохранения
     """
     config = configparser.ConfigParser()
-    path_for_cnfg = Path(f'{Path.home()}/.py_pass_conf/config')
+    # path_for_cnfg = Path(f'{Path.home()}/.py_pass_conf/config')
+    path_for_cnfg = Path(f'{Path.home()}/.py_pass/config')
     path_to_confrFile = f'{path_for_cnfg}/config.ini'
     try:
         if not Path(path_for_cnfg).exists():
             path_for_cnfg.mkdir(parents=True) # https://docs.python.org/3/library/pathlib.html#pathlib.Path.mkdir
             paswd = input('Придумайте мастер-пароль для доступа к данным: ')
             path = f'{input("Введите путь для записи файла с данными: ")}'
-            # path = f'{path}/test.json'
-            path = f'{path}/.allpwd.json'
+            path = f'{path}/.all_pwd.json'
             config.add_section('Config')
             config.set('Config', 'Path', f'{path}.aes') # для шифрования
-            config.set('Config', 'MasterPaswd', paswd)
+            config.set('Config', 'MasterPaswd', \
+                _hash(paswd))
             # запись конфига
             with open(path_to_confrFile, 'w') as file:
                 config.write(file)
@@ -48,4 +48,6 @@ def js_run(path_js:str, paswd:str) -> None:
             print(f'Новый файл создан по пути {path}')
         else:
             return True
-    
+
+if __name__ == '__main__':
+    print(configur())

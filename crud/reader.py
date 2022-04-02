@@ -3,30 +3,11 @@ import os
 import sys
 import readline
 from prettytable import PrettyTable
+from crud.deleter import deleter
 sys.path.append(os.path.join(os.getcwd(), ''))
-from create_change_delete_read.changer import write_change
-from all_keys_srvices.show_all_serv import show_all, checkin
+from crud.updater import write_change
+from all_keys_srvices.spec_for_crud import show_all, checkin
 from utils.compliter import MyCompleter
-
-
-def deleter(data:dict, name_service:str, path:str) -> None:
-    """удалит выбранный сервис
-    :param path : путь до файла json
-    :param _dict_ data: словарь из json
-    :param _str_ name_service: пользовательский ввод -
-    этот сервис будет удален
-    """
-    try:
-        for _dict in data['Loggins & passwords']:
-            if _dict['service'] == name_service:
-                data['Loggins & passwords'].remove(_dict)
-                #   запись в файл
-                with open (path, 'w') as file:
-                    json.dump(data, file, \
-                        ensure_ascii=False, indent=4)
-                    print(f'{name_service} - удален')
-    except Exception as ex:
-        print(ex)
 
 
 def data_printer(_data:dict) -> None:
@@ -83,7 +64,3 @@ def triger_flags(*args) -> None:
             else:
                 deleter(args[0], args[1], args[3])
                 break
-
-
-if __name__ == '__main__':
-    runner_to_find('/Users/kulkovni/Desktop/.allpwd.json', 'find')

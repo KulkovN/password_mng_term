@@ -1,4 +1,7 @@
+import sys
+from pathlib import Path
 from prettytable import PrettyTable
+
 
 
 def show_all(data:dict) -> None:

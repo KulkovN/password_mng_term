@@ -2,8 +2,8 @@
 import stdiomask
 from pathlib import Path, PurePosixPath
 from utils.cr_pathes import configur
-from create_change_delete_read.finder_deleter import runner_to_find
-from create_change_delete_read.creater import write_new_pass
+from crud.reader import runner_to_find
+from crud.creater import write_new_pass
 from utils._crypt import crypt ,check_pwd
 from utils.texts import HI, BYE, TASKS, TASKS_EXIT, MES_S
 

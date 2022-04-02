@@ -13,7 +13,7 @@ def main(counter:int) -> None:
     запуск работы
     :param counter: счетчик попыток запуска
     """
-    PTS = configur() # return type is `float`
+    PTS = configur()
     path_to_json = PTS[0].split(PurePosixPath(PTS[0]).suffix)[0]
     print(HI)
     while True:
@@ -25,14 +25,10 @@ def main(counter:int) -> None:
                 if Path(PTS[0]).exists():
                     crypt(PTS[0], paswd, ' ')
                 condition = input(MES_S['what_u_do'])
-                # if condition.lower() in TASKS[:6]:
-                #     runner_to_find(path_to_json, condition.lower())
                 if condition.lower() in TASKS[0:3]:
                     write_new_pass(path_to_json)
                 elif condition.lower() in TASKS[3:]:
                     runner_to_find(path_to_json, condition.lower())
-                # elif condition.lower() in TASKS[6:]:
-                #     write_new_pass(path_to_json)
                 elif condition.lower() in TASKS_EXIT:
                     counter = 0
                     print(BYE)

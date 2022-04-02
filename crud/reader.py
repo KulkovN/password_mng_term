@@ -8,6 +8,7 @@ sys.path.append(os.path.join(os.getcwd(), ''))
 from crud.updater import write_change
 from all_keys_srvices.spec_for_crud import show_all, checkin
 from utils.compliter import MyCompleter
+from utils.texts import TASKS
 
 
 def data_printer(_data:dict) -> None:
@@ -55,10 +56,10 @@ def triger_flags(*args) -> None:
     flag = args[2]
     for _dict in args[0]['Loggins & passwords']:
         if args[1] == _dict['service']:
-            if flag in ['find', 'найти']:
+            if flag in TASKS[3:7]: # ['find', 'найти']:
                 data_printer(_dict)
                 break
-            elif flag in ['change', 'изменить']:
+            elif flag in TASKS[7:11]: # ['change', 'изменить']:
                 write_change(args[0], args[1], args[3])
                 break
             else:

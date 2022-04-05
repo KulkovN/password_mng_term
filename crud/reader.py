@@ -9,7 +9,6 @@ from all_keys_srvices.spec_for_crud import show_all, checkin, triger_flags
 from utils.compliter import MyCompleter
 
 
-
 def data_printer(_data:dict) -> None:
     """Вывод значений словаря с данными, 
     когда пользватель просто ищет нужный пароль

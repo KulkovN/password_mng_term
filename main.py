@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 import stdiomask
+import readline
 from pathlib import Path, PurePosixPath
 from utils.cr_pathes import configur
 from crud.reader import runner_to_find
 from crud.creater import write_new_pass
 from utils._crypt import crypt ,check_pwd
+from utils.compliter import MyCompleter
 from utils.texts import HI, BYE, TASKS, TASKS_EXIT, MES_S
 
 
@@ -20,6 +22,10 @@ def main(counter:int) -> None:
     
     paswd = stdiomask.getpass(prompt=f'У вас есть {counter} \
 попытки для ввода мастер-пароля и режима\nВведите мастер-пароль: ')
+    # комплитер на список режимов
+    completer = MyCompleter(TASKS)
+    readline.set_completer(completer.complete)
+    readline.parse_and_bind('tab: complete')
     condition = input(MES_S['what_u_do']).strip()
     user_check = check_pwd(PTS[1] ,paswd)
 

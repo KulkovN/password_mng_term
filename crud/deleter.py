@@ -1,7 +1,7 @@
 import json
 
 
-def deleter(data:dict, name_service:str, path:str) -> None:
+def deleter_(data:dict, name_service:str, path:str) -> None:
     """удалит выбранный сервис
     :param path : путь до файла json
     :param _dict_ data: словарь из json

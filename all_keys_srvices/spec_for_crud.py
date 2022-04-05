@@ -1,7 +1,11 @@
 import sys
-from pathlib import Path
 from prettytable import PrettyTable
+from pathlib import Path
 
+sys.path.append(Path.joinpath(Path.cwd(), '')) 
+import crud.reader as cr
+import crud.deleter as cd
+from utils.texts import TASKS
 
 
 def show_all(data:dict) -> None:
@@ -29,3 +33,27 @@ def checkin(us_inp:str, data:dict) -> bool:
     """
     return True if us_inp in (i["service"] for i \
         in data["Loggins & passwords"]) else False
+
+
+def triger_flags(*args) -> None:
+    """
+    Функция филтрации флага, после ввода сервиса
+    :para: args - кортеж из:
+        - data,
+        - name_service, 
+        - flag,
+        - path 
+    полученные из runner_to_find
+    """
+    flag = args[2]
+    for _dict in args[0]['Loggins & passwords']:
+        if args[1] == _dict['service']:
+            if flag in TASKS[3:7]: # ['find', 'найти']:
+                cr.data_printer(_dict)
+                break
+            elif flag in TASKS[7:11]: # ['change', 'изменить']:
+                cr.write_change(args[0], args[1], args[3])
+                break
+            else:
+                cd.deleter_(args[0], args[1], args[3])
+                break

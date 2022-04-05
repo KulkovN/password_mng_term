@@ -1,14 +1,13 @@
 import json
-import os
+from pathlib import Path
 import sys
 import readline
 from prettytable import PrettyTable
-from crud.deleter import deleter
-sys.path.append(os.path.join(os.getcwd(), ''))
-from crud.updater import write_change
-from all_keys_srvices.spec_for_crud import show_all, checkin
+
+sys.path.append(Path.joinpath(Path.cwd(), ''))
+from all_keys_srvices.spec_for_crud import show_all, checkin, triger_flags
 from utils.compliter import MyCompleter
-from utils.texts import TASKS
+
 
 
 def data_printer(_data:dict) -> None:
@@ -43,25 +42,25 @@ def runner_to_find(path:str, flag:str) -> float:
         triger_flags(data, name_service, flag, path)
         
        
-def triger_flags(*args) -> None:
-    """
-    Функция филтрации флага, после ввода сервиса
-    :para: args - кортеж из:
-        - data,
-        - name_service, 
-        - flag,
-        - path 
-    полученные из runner_to_find
-    """
-    flag = args[2]
-    for _dict in args[0]['Loggins & passwords']:
-        if args[1] == _dict['service']:
-            if flag in TASKS[3:7]: # ['find', 'найти']:
-                data_printer(_dict)
-                break
-            elif flag in TASKS[7:11]: # ['change', 'изменить']:
-                write_change(args[0], args[1], args[3])
-                break
-            else:
-                deleter(args[0], args[1], args[3])
-                break
+# def triger_flags(*args) -> None:
+#     """
+#     Функция филтрации флага, после ввода сервиса
+#     :para: args - кортеж из:
+#         - data,
+#         - name_service, 
+#         - flag,
+#         - path 
+#     полученные из runner_to_find
+#     """
+#     flag = args[2]
+#     for _dict in args[0]['Loggins & passwords']:
+#         if args[1] == _dict['service']:
+#             if flag in TASKS[3:7]: # ['find', 'найти']:
+#                 data_printer(_dict)
+#                 break
+#             elif flag in TASKS[7:11]: # ['change', 'изменить']:
+#                 write_change(args[0], args[1], args[3])
+#                 break
+#             else:
+#                 deleter(args[0], args[1], args[3])
+#                 break

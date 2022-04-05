@@ -1,7 +1,3 @@
-import readline
-import json
-
-
 class MyCompleter(object):  # кастомный комплитер с переделанным инициализирующим методом
 
     def __init__(self, options):

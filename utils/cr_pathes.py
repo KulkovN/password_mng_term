@@ -8,7 +8,6 @@ def configur() -> float:
     Создание конфига с путем для сохранения
     """
     config = configparser.ConfigParser()
-    # path_for_cnfg = Path(f'{Path.home()}/.py_pass_conf/config')
     path_for_cnfg = Path(f'{Path.home()}/.py_pass/config')
     path_to_confrFile = f'{path_for_cnfg}/config.ini'
     try:

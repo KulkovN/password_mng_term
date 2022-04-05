@@ -5,6 +5,7 @@ from pathlib import Path
 sys.path.append(Path.joinpath(Path.cwd(), '')) 
 import crud.reader as cr
 import crud.deleter as cd
+import crud.updater as cu
 from utils.texts import TASKS
 
 
@@ -52,7 +53,7 @@ def triger_flags(*args) -> None:
                 cr.data_printer(_dict)
                 break
             elif flag in TASKS[7:11]: # ['change', 'изменить']:
-                cr.write_change(args[0], args[1], args[3])
+                cu.write_change(args[0], args[1], args[3])
                 break
             else:
                 cd.deleter_(args[0], args[1], args[3])

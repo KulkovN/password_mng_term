@@ -49,10 +49,10 @@ def triger_flags(*args) -> None:
     flag = args[2]
     for _dict in args[0]['Loggins & passwords']:
         if args[1] == _dict['service']:
-            if flag in TASKS[3:7]: # ['find', 'найти']:
+            if flag in TASKS[3:7]:
                 cr.data_printer(_dict)
                 break
-            elif flag in TASKS[7:11]: # ['change', 'изменить']:
+            elif flag in TASKS[7:11]:
                 cu.write_change(args[0], args[1], args[3])
                 break
             else:

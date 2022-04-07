@@ -52,7 +52,7 @@ def triger_flags(*args) -> None:
             if flag in TASKS[3:7]:
                 cr.data_printer(_dict)
                 break
-            elif flag in TASKS[7:11]:
+            elif flag in TASKS[7:12]:
                 cu.write_change(args[0], args[1], args[3])
                 break
             else:

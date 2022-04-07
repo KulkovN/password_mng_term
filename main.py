@@ -20,29 +20,28 @@ def main(counter:int) -> None:
     path_to_json = PTS[0].split(PurePosixPath(PTS[0]).suffix)[0]
     print(HI)
     
-    paswd = stdiomask.getpass(prompt=f'У вас есть {counter} \
-попытки для ввода мастер-пароля и режима\nВведите мастер-пароль: ')
-    # комплитер на список режимов
-    completer = MyCompleter(TASKS)
-    readline.set_completer(completer.complete)
-    readline.parse_and_bind('tab: complete')
-    condition = input(MES_S['what_u_do']).strip()
-    user_check = check_pwd(PTS[1] ,paswd)
-
     while True:
+        paswd = stdiomask.getpass(prompt=f'У вас есть {counter} \
+попытки для ввода мастер-пароля и режима\nВведите мастер-пароль: ')
+        user_check = check_pwd(PTS[1] ,paswd)
         if counter > 0:
             try:
-                if user_check and condition.lower() in TASKS or\
-                    condition.lower() in TASKS_EXIT:
-                    if Path(PTS[0]).exists():
-                        crypt(PTS[0], paswd, ' ')
-                    if condition.lower() in TASKS[0:3]:
-                        write_new_pass(path_to_json)
-                    elif condition.lower() in TASKS[3:]:
-                        runner_to_find(path_to_json, condition.lower())
-                    elif condition.lower() in TASKS_EXIT:
-                        counter = 0
-                        print(BYE)
+                if user_check:
+                    # комплитер на список режимов
+                    completer = MyCompleter(TASKS)
+                    readline.set_completer(completer.complete)
+                    readline.parse_and_bind('tab: complete')
+                    condition = input(MES_S['what_u_do']).strip()
+                    if condition.lower() in TASKS or condition.lower() in TASKS_EXIT:
+                        if Path(PTS[0]).exists():
+                            crypt(PTS[0], paswd, ' ')
+                        if condition.lower() in TASKS[0:3]:
+                            write_new_pass(path_to_json)
+                        elif condition.lower() in TASKS[3:]:
+                            runner_to_find(path_to_json, condition.lower())
+                        elif condition.lower() in TASKS_EXIT:
+                            counter = 0
+                            print(BYE)
                     crypt(path_to_json, paswd, 'crypt')
                     break
                 elif not user_check: # or counter >= 1:

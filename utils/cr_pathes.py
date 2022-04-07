@@ -2,6 +2,8 @@ import json
 import configparser
 from pathlib import Path, PurePosixPath
 from utils._crypt import _hash
+from utils.texts import AFTER_CONF_CREATION
+
 
 def configur() -> float:
     """ 
@@ -23,13 +25,11 @@ def configur() -> float:
             # запись конфига
             with open(path_to_confrFile, 'w') as file:
                 config.write(file)
+            print(AFTER_CONF_CREATION)
         config.read(path_to_confrFile)
         pts, check_pswd = \
             config.get('Config', 'Path'), config.get('Config', 'MasterPaswd')
         js_run(pts, check_pswd)
-        print("Конфиг создан. При старте приложения нужно ввести мастер-пароль и режим из списка\n\
-'найти', 'изменить', 'удалит', 'создать', 'create', 'find', 'read', 'update', 'change', 'delete', 'c','r','u','d' - тоже будет работать)\
-\nДля выхода - q")
         return pts, check_pswd
     except FileNotFoundError:
         configur(input(f'Напишите корректный путь (полный): '))

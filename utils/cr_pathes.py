@@ -27,6 +27,9 @@ def configur() -> float:
         pts, check_pswd = \
             config.get('Config', 'Path'), config.get('Config', 'MasterPaswd')
         js_run(pts, check_pswd)
+        print("Конфиг создан. При старте приложения нужно ввести мастер-пароль и режим из списка\n\
+'найти', 'изменить', 'удалит', 'создать', 'create', 'find', 'read', 'update', 'change', 'delete', 'c','r','u','d' - тоже будет работать)\
+\nДля выхода - q")
         return pts, check_pswd
     except FileNotFoundError:
         configur(input(f'Напишите корректный путь (полный): '))

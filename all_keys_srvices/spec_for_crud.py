@@ -18,6 +18,7 @@ def show_all(data:dict) -> None:
     table = PrettyTable()
     table.field_names = ['№','Сервисы']
     lst_services  = [j['service'] for j in data['Loggins & passwords']]
+    lst_services.sort()
     counter = 1
     for i in lst_services:
         table.add_row([counter ,i])

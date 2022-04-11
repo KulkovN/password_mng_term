@@ -62,6 +62,3 @@ def js_run(path_js:str, paswd:str) -> None:
             print(f'Новый файл создан по пути {path}')
         else:
             return True
-
-if __name__ == '__main__':
-    js_path_cre(input())

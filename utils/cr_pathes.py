@@ -8,6 +8,7 @@ from utils.texts import AFTER_CONF_CREATION
 def configur() -> float:
     """ 
     Создание конфига с путем для сохранения
+    :return: float с путем и паролем для расшифровки 
     """
     config = configparser.ConfigParser()
     path_for_cnfg = Path(f'{Path.home()}/.py_pass/config')
@@ -30,8 +31,6 @@ def configur() -> float:
         config.get('Config', 'Path'), config.get('Config', 'MasterPaswd')
     js_run(pts, check_pswd)
     return pts, check_pswd
-    # except FileNotFoundError:
-    #     configur(input(f'Напишите корректный путь (полный): '))
 
 
 def js_path_cre(path_:str) -> str:

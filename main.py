@@ -24,7 +24,7 @@ def main(counter:int) -> None:
         paswd = stdiomask.getpass(prompt=f'У вас есть {counter} \
 попытки для ввода мастер-пароля и режима\nВведите мастер-пароль: ')
         user_check = check_pwd(PTS[1] ,paswd)
-        if counter > 0:
+        if counter != 1:
             try:
                 if user_check:
                     # комплитер на список режимов

@@ -32,22 +32,22 @@ def main(counter:int) -> None:
                     readline.set_completer(completer.complete)
                     readline.parse_and_bind('tab: complete')
                     condition = input(MES_S['what_u_do']).strip()
-                    if condition.lower() in TASKS or condition.lower() in TASKS_EXIT:
-                        if Path(PTS[0]).exists():
-                            crypt(PTS[0], paswd, ' ')
-                        if condition.lower() in TASKS[0:3]:
-                            write_new_pass(path_to_json)
-                        elif condition.lower() in TASKS[3:]:
-                            runner_to_find(path_to_json, condition.lower())
-                        elif condition.lower() in TASKS_EXIT:
-                            counter = 0
-                            print(BYE)
-                    crypt(path_to_json, paswd, 'crypt')
-                    break
+                    if Path(PTS[0]).exists():
+                        crypt(PTS[0], paswd, ' ')
+                        if condition.lower() in TASKS or condition.lower() in TASKS_EXIT:
+                            if condition.lower() in TASKS[0:3]:
+                                write_new_pass(path_to_json)
+                            elif condition.lower() in TASKS[3:]:
+                                runner_to_find(path_to_json, condition.lower())
+                            elif condition.lower() in TASKS_EXIT:
+                                counter = 0
+                                print(BYE)
+                            elif condition.lower() not in TASKS or TASKS_EXIT:
+                                condition = input('У программы нет такого режима работы. Введите режим: ')
+                                counter -= 1
+                        crypt(path_to_json, paswd, 'crypt')
+                        break
                 elif not user_check: # or counter >= 1:
-                    counter -= 1
-                elif condition.lower() not in TASKS or TASKS_EXIT:
-                    condition = input('У программы нет такого режима работы. Введите режим: ')
                     counter -= 1
                 else:
                     break

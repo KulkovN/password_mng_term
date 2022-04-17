@@ -39,15 +39,13 @@ def crypt(file, paswd, flag):
         pyAesCrypt.encryptFile(file, f'{file}.aes'\
             ,paswd, buffer) 
         os.remove(file)
-        print("Файл зашифрован...")
     # дешифруем
     else:
         pyAesCrypt.decryptFile(file\
             ,os.path.splitext(file)[0],
             paswd, buffer)
         os.remove(file)
-        print('Файл разшифрован...')
 
 
-if __name__ == '__main__':
-    crypt('/Users/kulkovni/Desktop.allpwd.json.aes', '3571', ' ')
+# if __name__ == '__main__':
+#     crypt('/Users/kulkovni/Desktop/.all_pwd.json', '3571', 'crypt')

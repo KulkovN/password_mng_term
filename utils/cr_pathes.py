@@ -56,9 +56,9 @@ def js_run(path_js:str, paswd:str) -> None:
     """
     path = path_js.split(PurePosixPath(path_js).suffix)[0]
     if not Path(path).exists(): # .json
-        if not Path(path_js).exists(): # .aes
-            with open(path, 'w') as jf:
-                json.dump({'Loggins & passwords':[]}, jf)
-            print(f'Новый файл создан по пути {path}')
-        else:
-            return True
+        # if not Path(path_js).exists(): # .aes
+        with open(path, 'w') as jf:
+            json.dump({'Loggins & passwords':[]}, jf)
+        print(f'Новый файл создан по пути {path}')
+    # else:
+    #     return True

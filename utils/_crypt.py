@@ -1,3 +1,5 @@
+# неободим поиск алтренативного решения !! 
+
 import os
 import pyAesCrypt
 from uuid import uuid4
@@ -47,5 +49,5 @@ def crypt(file, paswd, flag):
         os.remove(file)
 
 
-# if __name__ == '__main__':
-#     crypt('/Users/kulkovni/Desktop/.all_pwd.json', '3571', 'crypt')
+if __name__ == '__main__':
+    crypt('/Users/kulkovni/Desktop/all_pwd.json', '3571', 'crypt')

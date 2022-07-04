@@ -1,6 +1,6 @@
 import os
 import json
-
+from utils.pwd_generator import pwdGen
 
 def path_finder(func:object) -> str:
     """
@@ -28,6 +28,10 @@ def write_new_pass(save_path:str) -> None: #, data:dict) -> None:
     :param save_path (str): Путь до файла хранения данных
     # :param data (dict): данные под запись
     """
+    generate = True if (input('Сгенерировать пароль (y/n)? ')) == 'y' else False
+    if generate:
+        len_pwd = int(input('Введите желаемую длинну пароля: '))
+        print(f'Сгенерирован пароль: {pwdGen(len_pwd)}')
     uid = {i:input(f'Введите ваш {i}: ') for i in \
                     dict(service='', login='', password='')} # user input data (uid)
     with open(save_path, 'r+', encoding='utf-8') as file:

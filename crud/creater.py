@@ -30,10 +30,15 @@ def write_new_pass(save_path:str) -> None: #, data:dict) -> None:
     """
     generate = True if (input('Сгенерировать пароль (y/n)? ')) == 'y' else False
     if generate:
-        len_pwd = int(input('Введите желаемую длинну пароля: '))
-        print(f'Сгенерирован пароль: {pwdGen(len_pwd)}')
-    uid = {i:input(f'Введите ваш {i}: ') for i in \
-                    dict(service='', login='', password='')} # user input data (uid)
+        len_pwd = int(input('Введите желаемую длинну пароля: ')) 
+        pwd = pwdGen(len_pwd)
+        uid = {i:input(f'Введите ваш {i}: ') for i in \
+                    dict(service='', login='')}
+        uid['password'] = pwd
+        print(f"Для {uid['service']} пароль: {pwd}")
+    else:
+        uid = {i:input(f'Введите ваш {i}: ') for i in \
+                        dict(service='', login='', password='')}
     with open(save_path, 'r+', encoding='utf-8') as file:
         js_data = json.load(file)
     if uid['service'] in \

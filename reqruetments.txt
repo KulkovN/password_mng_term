@@ -1,6 +1,7 @@
 astroid==2.9.3
 cffi==1.15.0
 cryptography==36.0.2
+dearpygui==1.6.2
 isort==5.10.1
 lazy-object-proxy==1.7.1
 mccabe==0.6.1

@@ -47,5 +47,5 @@ def crypt(file, paswd, flag):
         os.remove(file)
 
 
-# if __name__ == '__main__':
-#     crypt('/Users/kulkovni/Desktop/.all_pwd.json', '3571', 'crypt')
+if __name__ == '__main__':
+    crypt('/Users/kulkovni/Desktop/.all_pwd_1.json.aes', '3571', 'encrypt')

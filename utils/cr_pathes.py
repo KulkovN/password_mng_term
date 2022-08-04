@@ -11,7 +11,7 @@ def configur() -> float:
     :return: float с путем и паролем для расшифровки 
     """
     config = configparser.ConfigParser()
-    path_for_cnfg = Path(f'{Path.home()}/.py_pass/config')
+    path_for_cnfg = Path(f'{Path.home()}/.py_pass_old/config')
     path_to_confrFile = f'{path_for_cnfg}/config.ini'
     # try:
     if not Path(path_for_cnfg).exists():

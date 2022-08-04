@@ -4,17 +4,17 @@ from uuid import uuid4
 from hashlib import sha256
 
 
-def _hash(pwd) -> str:
+def _hash(pwd:str) -> str:
     """ Создает хеш для записи в конфиг
 
     :param pwd: строка пароля под запись
-    :return: венет строку в хеше
+    :return: вернет строку в хеше
     """
     salt = uuid4().hex
     return sha256(salt.encode() + pwd.encode()).hexdigest() + ':' + salt
 
 
-def check_pwd(h_pwd:str, pwd) -> bool:
+def check_pwd(h_pwd:str, pwd:str) -> bool:
     """ Проверка пароля пользователя
 
     :param h_pwd: захешованый пароль из конфига
@@ -47,5 +47,7 @@ def crypt(file, paswd, flag):
         os.remove(file)
 
 
-if __name__ == '__main__':
-    crypt('/Users/kulkovni/Desktop/.all_pwd_1.json.aes', '3571', 'encrypt')
+# if __name__ == '__main__':
+#     crypt('/Users/kulkovni/Desktop/.all_pwd.json.aes', '3571', 'encrypt')
+
+# print(_hash('3575r46274dfaakfjh1'))

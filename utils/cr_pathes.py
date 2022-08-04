@@ -3,9 +3,10 @@ import re
 import json
 import configparser
 from pathlib import Path, PurePosixPath
-from _crypt import _hash
-from texts import AFTER_CONF_CREATION
-
+from utils._crypt import _hash
+from utils.texts import AFTER_CONF_CREATION
+# from _crypt import _hash
+# from texts import AFTER_CONF_CREATION
 
 
 def configur(profile:str) -> float:
@@ -14,19 +15,16 @@ def configur(profile:str) -> float:
     :return: float с путем и паролем для расшифровки 
     """
     config = configparser.ConfigParser()
-    path_for_cnfg = Path(f'{Path.home()}/.py_pass/config')
+    path_for_cnfg = Path(f'{Path.home()}/.py_pass')
     path_to_confrFile = f'{path_for_cnfg}/config.ini'
-    # profile = input('Введите профиль пользователя: ')
     if not Path(path_for_cnfg).exists():
         path_for_cnfg.mkdir(parents=True) # https://docs.python.org/3/library/pathlib.html#pathlib.Path.mkdir
         paswd = input('Придумайте мастер-пароль для доступа к данным: ')
-        raw_profile_path = Path(f'{Path.home()}/.py_pass/profiles/{profile}/')
+        raw_profile_path = Path(f'{Path.home()}/.py_pass/profiles/{profile}')
         raw_profile_path.mkdir(parents=True)
-        # path = js_path_cre(input("Введите путь для записи файла с данными: "))
         config.add_section('Config')
-        # config.set('Config', 'Path', f'{path}.aes') # для шифрования
-        config.set('Config', f'{profile}_path_file', f'{raw_profile_path}_pwds.json.aes') # для шифрования
-        config.set('Config', f'{profile}_master_password', _hash(paswd))
+        config.set('Config', f'Profile_{profile}_file', f'{raw_profile_path}/slp.json.aes') # для шифрования
+        config.set('Config', f'Profile_{profile}_master_pwd', _hash(paswd))
         # добавление секции профилей
         config.add_section('Profiles')
         config.set('Profiles', f'{profile}', profile)
@@ -36,7 +34,7 @@ def configur(profile:str) -> float:
         print(AFTER_CONF_CREATION)
     config.read(path_to_confrFile)
     pts, check_pswd, profile = \
-        config.get('Config', f'{profile}_path_file'), config.get('Config', f'{profile}_master_password')\
+        config.get('Config', f'Profile_{profile}_file'), config.get('Config', f'Profile_{profile}_master_pwd')\
             , config.get('Profiles', profile)
     # js_run(pts, check_pswd, profile)
     js_run(pts)
@@ -60,5 +58,5 @@ def js_run(path_js:str) -> None:
             return True
 
 
-if __name__ == '__main__':
-    cnf = configur()
+if __name__ == "__main__":
+    configur('test')

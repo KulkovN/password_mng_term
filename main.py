@@ -16,8 +16,13 @@ def main(counter:int) -> None:
     :param counter: счетчик попыток запуска
     """
 
-    PTS = configur()
-    path_to_json = PTS[0].split(PurePosixPath(PTS[0]).suffix)[0]
+    try:
+        profile = input('Введите профиль пользователя: ')
+        PTS = configur(profile)
+        path_to_json = PTS[0].split(PurePosixPath(PTS[0]).suffix)[0]
+    except Exception as ex:
+        print(ex)
+            
     print(HI)
     
     while True:

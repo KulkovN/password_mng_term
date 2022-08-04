@@ -30,7 +30,7 @@ def write_new_pass(save_path:str) -> None: #, data:dict) -> None:
     """
     generate = True if (input('Сгенерировать пароль (y/n)? ')) == 'y' else False
     if generate:
-        len_pwd = int(input('Введите желаемую длинну пароля: ')) 
+        len_pwd = int(input('Введите желаемую длинну пароля: '))
         pwd = pwdGen(len_pwd)
         uid = {i:input(f'Введите ваш {i}: ') for i in \
                     dict(service='', login='')}

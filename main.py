@@ -17,11 +17,12 @@ def main(counter:int) -> None:
     """
 
 
+    print(HI)
     profile = input('Введите профиль пользователя: ')
     PTS = configur(profile)
     # PTS = ('/Users/kulkovni/.py_pass/profiles/123/slp.json.aes', 'dc4d7a9737e0cb01698115b1baf023c7f2b68e365a64ddf173f6444ede9f3d72:aec8dbbab60b455886d04c535bd075ef', '123')  
     path_to_json = PTS[0].split(PurePosixPath(PTS[0]).suffix)[0]
-    print(HI)
+    
     
     while True:
         paswd = stdiomask.getpass(prompt=f'{counter} попытки для ввода мастер-пароля: ')

@@ -5,7 +5,7 @@ from pathlib import Path, PurePosixPath
 from utils.cr_pathes import configur
 from crud.reader import runner_to_find
 from crud.creater import write_new_pass
-from utils._crypt import crypt ,check_pwd
+from utils._crypt import crypt, check_pwd
 from utils.compliter import MyCompleter
 from utils.texts import HI, BYE, TASKS, TASKS_EXIT, MES_S
 
@@ -16,13 +16,16 @@ def main(counter:int) -> None:
     :param counter: счетчик попыток запуска
     """
 
-    PTS = configur()
-    path_to_json = PTS[0].split(PurePosixPath(PTS[0]).suffix)[0]
+
     print(HI)
+    profile = input('Введите ПРОФИЛЬ пользователя: ')
+    PTS = configur(profile)
+    # PTS = ('/Users/kulkovni/.py_pass/profiles/123/slp.json.aes', 'dc4d7a9737e0cb01698115b1baf023c7f2b68e365a64ddf173f6444ede9f3d72:aec8dbbab60b455886d04c535bd075ef', '123')  
+    path_to_json = PTS[0].split(PurePosixPath(PTS[0]).suffix)[0]
+    
     
     while True:
-        paswd = stdiomask.getpass(prompt=f'У вас есть {counter} \
-попытки для ввода мастер-пароля и режима\nВведите мастер-пароль: ')
+        paswd = stdiomask.getpass(prompt=f'{counter} попытки для ввода мастер-пароля: ')
         user_check = check_pwd(PTS[1] ,paswd)
         if counter != 1:
             try:
@@ -62,6 +65,5 @@ def main(counter:int) -> None:
 
 
 if __name__ == "__main__":
-    counter_attempts_to_run = 3
-    main(counter_attempts_to_run)
+    main(3)
     

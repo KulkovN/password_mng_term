@@ -1,9 +1,11 @@
+import readline
 class MyCompleter(object):  # кастомный комплитер с переделанным инициализирующим методом
 
     def __init__(self, options):
         self.options = sorted(options)
 
     def complete(self, text, state):
+        # print(state)
         if state == 0:  # на первый тригер накидывается первое возможное совпадение
             if text:  # совпадения в кэше (записи, начинающиеся с введенного текста)
                 self.matches = [s for s in self.options 

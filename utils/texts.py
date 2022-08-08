@@ -12,7 +12,7 @@ TASKS_EXIT = ['q', 'й', 'exit', 'выход']
 VARABLES = ['service', 'login', 'password']
 
 MES_S = {'attempts' : "\nУ вас есть 3 попытки для ввода режима.""", 
-    'what_u_do':"\nВведите режим: ",
+    'what_u_do':"\nВведите режим (q - для выхода): ",
     'zero_att' : "\nПопытки исчерпаны.\nПопробуйте перезапустить приложение и ввести требуемое действие "}
 
 AFTER_CONF_CREATION = 'Для ознакомления с функционалом - пройдите по ссылке: https://github.com/KulkovN/password_mng_term/blob/main/README.md'

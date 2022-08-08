@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import sys
 import stdiomask
 import readline
 from pathlib import Path, PurePosixPath
@@ -15,15 +16,10 @@ def main(counter:int) -> None:
     запуск работы
     :param counter: счетчик попыток запуска
     """
-
-
     print(HI)
     profile = input('Введите ПРОФИЛЬ пользователя: ')
     PTS = configur(profile)
-    # PTS = ('/Users/kulkovni/.py_pass/profiles/123/slp.json.aes', 'dc4d7a9737e0cb01698115b1baf023c7f2b68e365a64ddf173f6444ede9f3d72:aec8dbbab60b455886d04c535bd075ef', '123')  
     path_to_json = PTS[0].split(PurePosixPath(PTS[0]).suffix)[0]
-    
-    
     while True:
         paswd = stdiomask.getpass(prompt=f'{counter} попытки для ввода мастер-пароля: ')
         user_check = check_pwd(PTS[1] ,paswd)

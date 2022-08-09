@@ -30,8 +30,9 @@ def main(counter:int) -> None:
                     completer = MyCompleter(TASKS)
                     readline.set_completer(completer.complete)
                     readline.parse_and_bind('tab: complete')
-                    if Path(PTS[0]).exists():
-                        crypt(PTS[0], paswd, ' ')
+                    if Path(PTS[0]).exists() or Path(path_to_json).exists():
+                        if not Path(path_to_json).exists():
+                            crypt(PTS[0], paswd, ' ')
                         condition = input(MES_S['what_u_do']).strip()
                         while counter > 0 :
                             if condition.lower() not in TASKS and condition.lower() not in TASKS_EXIT:
